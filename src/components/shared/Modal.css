@@ -1,0 +1,26 @@
+.behinding {
+  z-index: -2;
+  opacity: 0;
+  animation: slideOff 0.25s ease-in;
+}
+
+.sheet-bottom-container {
+  animation: slideTop 0.25s ease-out;
+}
+
+@keyframes slideTop {
+  from {
+    bottom: -300px;
+  }
+  to {
+    bottom: 0;
+  }
+}
+@keyframes slideOff {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
