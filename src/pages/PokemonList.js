@@ -1,41 +1,45 @@
 import React from "react";
 
 import CardThumbnail from "../components/shared/CardThumbnail";
-import svgPikachu from "../assets/pikachu.svg";
+import LoadCardThumbnail from "../components/LoadCardThumbnail";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_POKEMONS = gql`
+  query pokemons($limit: Int, $offset: Int) {
+    pokemons(limit: $limit, offset: $offset) {
+      count
+      next
+      previous
+      status
+      message
+      results {
+        url
+        name
+        image
+      }
+    }
+  }
+`;
+
+const paramsGetPokemons = {
+  limit: 10,
+  offset: 9,
+};
 
 function PokemonList() {
-  const pokemons = [
-    "saha",
-    "naha",
-    "kumaha",
-    "turo",
-    "landu",
-    "suntar",
-    "saha",
-    "naha",
-    "kumaha",
-    "turo",
-    "landu",
-    "suntar",
-    "saha",
-    "naha",
-    "kumaha",
-    "turo",
-    "landu",
-    "suntar",
-    "saha",
-    "naha",
-    "kumaha",
-    "turo",
-    "landu",
-    "suntar",
-    "saha",
-    "naha",
-    "kumaha",
-    "turo",
-    "landu",
-    "suntar",
-  ];
+  const { loading, error, data } = useQuery(GET_POKEMONS, {
+    variables: paramsGetPokemons,
+  });
+
+  if (loading)
+    return (
+      <div className="grid grid-cols-3 gap-2">
+        {Array.from(Array(paramsGetPokemons.limit).keys()).map((index) => {
+          return <LoadCardThumbnail key={index} />;
+        })}
+      </div>
+    );
+  if (error) return `Error! ${error.message}`;
 
   const handleOnPokemonClick = (id) => {
     console.log("Go to pokemon profile!", id);
@@ -43,14 +47,14 @@ function PokemonList() {
 
   return (
     <div className="grid grid-cols-3 gap-2">
-      {pokemons.map((pokemon, index) => {
+      {data.pokemons.results.map((pokemon, index) => {
         return (
           <div key={index}>
             <CardThumbnail
-              image={svgPikachu}
-              title={pokemon}
+              image={pokemon.image}
+              title={pokemon.name}
               detail="Owned: 3"
-              handleClick={() => handleOnPokemonClick(index)}
+              handleClick={() => handleOnPokemonClick(pokemon.name)}
             />
           </div>
         );

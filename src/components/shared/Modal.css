@@ -1,22 +1,43 @@
-.behinding {
-  z-index: -2;
-  opacity: 0;
-  animation: slideOff 0.25s ease-in;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  overflow-y: scroll;
 }
 
-.sheet-bottom-container {
-  animation: slideTop 0.25s ease-out;
+.modal-main {
+  position: fixed;
+  background: white;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes slideTop {
+.display-block {
+  display: block;
+  animation: FadeIn ease-in-out 200ms;
+}
+
+.display-none {
+  animation: FadeOut ease-in-out 200ms;
+  display: none;
+}
+
+@keyframes FadeIn {
   from {
-    bottom: -300px;
+    opacity: 0;
   }
   to {
-    bottom: 0;
+    opacity: 1;
   }
 }
-@keyframes slideOff {
+
+@keyframes FadeOut {
   from {
     opacity: 1;
   }
