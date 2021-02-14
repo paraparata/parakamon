@@ -1,35 +1,28 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { Context, ACTIONS } from "../stores/Store";
+import { useGetPokemons } from "../utils/hookPokemon";
 
+import Button from "../components/shared/Button";
 import CardThumbnail from "../components/shared/CardThumbnail";
 import LoadCardThumbnail from "../components/LoadCardThumbnail";
-import { gql, useQuery } from "@apollo/client";
 
-const GET_POKEMONS = gql`
-  query pokemons($limit: Int, $offset: Int) {
-    pokemons(limit: $limit, offset: $offset) {
-      count
-      next
-      previous
-      status
-      message
-      results {
-        url
-        name
-        image
-      }
-    }
+const findInOwnedList = (target, arr) => {
+  const result = arr.find(({ name }) => name === target);
+  if (result === undefined) {
+    return { own: Number(0) };
   }
-`;
-
-const paramsGetPokemons = {
-  limit: 10,
-  offset: 9,
+  return result;
 };
 
 function PokemonList() {
-  const { loading, error, data } = useQuery(GET_POKEMONS, {
-    variables: paramsGetPokemons,
+  const [paramsGetPokemons, setParamsGetPokemons] = useState({
+    limit: 12,
+    offset: 0,
   });
+  const history = useHistory();
+  const { state, dispatch } = useContext(Context);
+  const { loading, error, data, refetch } = useGetPokemons(paramsGetPokemons);
 
   if (loading)
     return (
@@ -41,25 +34,48 @@ function PokemonList() {
     );
   if (error) return `Error! ${error.message}`;
 
-  const handleOnPokemonClick = (id) => {
-    console.log("Go to pokemon profile!", id);
+  const getFromLink = (link) => {
+    if (link === null) return;
+
+    const params = {
+      offset: parseInt(
+        link.slice(link.indexOf("offset") + 7, link.indexOf("&"))
+      ),
+      limit: parseInt(link.slice(link.indexOf("limit") + 6)),
+    };
+    setParamsGetPokemons({ ...paramsGetPokemons, ...params });
+    refetch();
+  };
+  const handleOnPokemonClick = (name) => {
+    dispatch({ type: ACTIONS.ADD_TMP, payload: name });
+    history.push("/");
   };
 
   return (
-    <div className="grid grid-cols-3 gap-2">
-      {data.pokemons.results.map((pokemon, index) => {
-        return (
-          <div key={index}>
-            <CardThumbnail
-              image={pokemon.image}
-              title={pokemon.name}
-              detail="Owned: 3"
-              handleClick={() => handleOnPokemonClick(pokemon.name)}
-            />
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className="w-full pb-4 flex justify-center space-x-6">
+        <Button
+          title="Prev"
+          onClick={() => getFromLink(data.pokemons.previous)}
+        />
+        <Button title="Next" onClick={() => getFromLink(data.pokemons.next)} />
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {data.pokemons.results.map((pokemon, index) => {
+          const { own } = findInOwnedList(pokemon.name, state.ownedList);
+          return (
+            <div key={index}>
+              <CardThumbnail
+                image={pokemon.image}
+                title={pokemon.name}
+                detail={`Owned: ${own}`}
+                handleClick={() => handleOnPokemonClick(pokemon.name)}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 

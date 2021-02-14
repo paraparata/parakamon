@@ -1,8 +1,16 @@
 import React from "react";
 
-function CardThumbnail({ image, title, detail, handleClick }) {
+function CardThumbnail({
+  image,
+  capitalizeTitle = true,
+  title,
+  subtitle = "",
+  detail,
+  handleClick = () => {},
+  children,
+}) {
   return (
-    <button
+    <div
       className="w-full px-2 py-2 rounded bg-white shadow focus:shadow-inner focus:ring focus:ring-blue-100"
       onClick={handleClick}
     >
@@ -14,10 +22,18 @@ function CardThumbnail({ image, title, detail, handleClick }) {
         ></img>
       </div>
       <div className="flex flex-col text-center">
-        <span className="text-sm font-medium capitalize">{title}</span>
+        <span
+          className={`text-sm font-medium ${capitalizeTitle && "capitalize"}`}
+        >
+          {title}
+        </span>
+        {subtitle && (
+          <span className="text-gray-400 text-xs capitalize">{subtitle}</span>
+        )}
         <span className="text-sm ">{detail}</span>
       </div>
-    </button>
+      {children}
+    </div>
   );
 }
 

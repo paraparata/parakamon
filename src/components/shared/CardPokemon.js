@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 function CardPokemon({ name, image, types, onClickMove, onClickAbility }) {
   return (
@@ -24,20 +25,8 @@ function CardPokemon({ name, image, types, onClickMove, onClickAbility }) {
         alt={name}
       ></img>
       <div className="space-x-6">
-        <button
-          type="button"
-          className="px-2 py-1 rounded bg-yellow-300 border focus:ring-2 focus:ring-offset-blue-400 shadow focus:shadow-inner font-medium"
-          onClick={onClickMove}
-        >
-          Moves
-        </button>
-        <button
-          type="button"
-          className="px-2 py-1 rounded bg-yellow-300 border focus:ring-2 focus:ring-offset-blue-400 shadow focus:shadow-inner font-medium"
-          onClick={onClickAbility}
-        >
-          Abilities
-        </button>
+        <Button title="Moves" onClick={onClickMove} />
+        <Button title="Abilities" onClick={onClickAbility} />
       </div>
     </div>
   );

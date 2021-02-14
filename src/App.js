@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+import Store from "./stores/Store";
 
 import AppBar from "./components/AppBar";
 import BottomNavBar from "./components/BottomNavBar";
@@ -10,6 +11,7 @@ import "./App.css";
 import svgBackpack from "./assets/backpack.svg";
 import svgCamera from "./assets/camera.svg";
 import svgPikachu from "./assets/pikachu.svg";
+
 const tabs = [
   {
     name: "Pokemon List",
@@ -30,20 +32,22 @@ const tabs = [
 
 function App() {
   return (
-    <div className="w-screen min-h-screen flex flex-col overflow-x-hidden overflow-y-scroll">
-      <AppBar title="Pokemon Journey" />
-      <main
-        className="mb-24 ss:mb-20 w-full px-2 py-2 flex-grow flex flex-col"
-        role="main"
-      >
-        <Switch>
-          <Route path="/" exact component={PokemonDetail} />
-          <Route path="/pokemon-list" exact component={PokemonList} />
-          <Route path="/my-pokemon" exact component={MyPokemonList} />
-        </Switch>
-      </main>
-      <BottomNavBar tabs={tabs} />
-    </div>
+    <Store>
+      <div className="w-screen min-h-screen flex flex-col overflow-x-hidden overflow-y-scroll">
+        <AppBar title="Pokemon Journey" tabs={tabs} />
+        <main
+          className="mb-24 ss:mb-20 w-full px-2 py-2 flex-grow flex flex-col"
+          role="main"
+        >
+          <Switch>
+            <Route path="/" exact component={PokemonDetail} />
+            <Route path="/pokemon-list" exact component={PokemonList} />
+            <Route path="/my-pokemon" exact component={MyPokemonList} />
+          </Switch>
+        </main>
+        <BottomNavBar tabs={tabs} />
+      </div>
+    </Store>
   );
 }
 

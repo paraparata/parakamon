@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { Context, ACTIONS } from "../stores/Store";
 
 function BottomNavBar({ tabs }) {
+  const { dispatch } = useContext(Context);
   const history = useHistory();
 
-  const handleActive = (route) => {
+  const handleActive = (route, index) => {
+    dispatch({ type: ACTIONS.CHANGE_TAB, payload: index });
     history.push(route);
   };
 
@@ -16,7 +19,7 @@ function BottomNavBar({ tabs }) {
             <button
               type="button"
               className="px-2 py-2 rounded-full border bg-white shadow-xl focus:ring focus:ring-blue-400 focus:shadow-inner"
-              onClick={() => handleActive(tab.route)}
+              onClick={() => handleActive(tab.route, index)}
             >
               <img
                 className="w-10 h-10 ss:w-8 ss:h-8 object-contain"
