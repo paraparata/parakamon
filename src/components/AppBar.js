@@ -1,24 +1,29 @@
-import React, { useContext } from "react";
-import { Context } from "../stores/Store";
+import React from "react";
 
-const styleTitleFont = {
-  fontFamily: "'Fredoka One', cursive",
-};
+import svgVolumeMute from "../assets/volume-mute-fill.svg";
+import svgVolumeUp from "../assets/volume-up-fill.svg";
+import svgInfo from "../assets/info-square-fill.svg";
 
-function AppBar({ title, tabs }) {
-  const { state } = useContext(Context);
-
+function AppBar({ title, volumeState, onInfoClick, onMusicClick }) {
   return (
-    <header className="px-4 py-3 ss:py-2 flex justify-between items-center bg-yellow-300 shadow-md">
-      <span
-        className="text-lg ss:text-base text-blue-700 tracking-tighter"
-        style={styleTitleFont}
-      >
+    <header className="fixed w-full px-6 py-4 flex justify-between items-center bg-yellow-300 shadow-md">
+      <button type="button" onClick={onInfoClick}>
+        <img
+          className="w-5 h-5 ss:w-8 ss:h-8 object-contain"
+          src={svgInfo}
+          alt="info"
+        ></img>
+      </button>
+      <span className="heading text-sm font-bold text-blue-500 tracking-tighter">
         {title}
       </span>
-      <span className="text-sm font-medium text-gray-700">
-        {tabs[state.currentTab].name}
-      </span>
+      <button type="button" onClick={onMusicClick}>
+        <img
+          className="w-6 h-6 ss:w-8 ss:h-8 object-contain"
+          src={volumeState ? svgVolumeUp : svgVolumeMute}
+          alt="music-button"
+        ></img>
+      </button>
     </header>
   );
 }

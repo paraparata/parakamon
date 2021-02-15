@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Store from "./stores/Store";
 
@@ -11,8 +12,9 @@ import "./App.css";
 import svgBackpack from "./assets/backpack.svg";
 import svgCamera from "./assets/camera.svg";
 import svgPikachu from "./assets/pikachu.svg";
+import audioBacksound from "./assets/parakamon-music.mp3";
 
-const tabs = [
+const TABS = [
   {
     name: "Pokemon List",
     icon: svgPikachu,
@@ -30,14 +32,39 @@ const tabs = [
   },
 ];
 
+const audio = new Audio();
+audio.src = audioBacksound;
+audio.loop = true;
+
 function App() {
+  const [stateMusic, setStateMusic] = useState(false);
+
+  const handleInfo = () => {
+    console.log("Info");
+  };
+  const handleMusic = () => {
+    if (!stateMusic) {
+      audio.play();
+      setStateMusic(true);
+    } else {
+      audio.pause();
+      setStateMusic(false);
+    }
+  };
+
   return (
     <Store>
-      <div className="w-screen min-h-screen flex flex-col overflow-x-hidden overflow-y-scroll">
-        <AppBar title="Pokemon Journey" tabs={tabs} />
+      <div className="w-screen min-h-screen flex flex-col">
+        <AppBar
+          title="Parakamon"
+          volumeState={stateMusic}
+          onInfoClick={handleInfo}
+          onMusicClick={handleMusic}
+        />
         <main
           className="mb-24 ss:mb-20 w-full px-2 py-2 flex-grow flex flex-col"
           role="main"
+          style={{ marginTop: "48px" }}
         >
           <Switch>
             <Route path="/" exact component={PokemonDetail} />
@@ -45,7 +72,7 @@ function App() {
             <Route path="/my-pokemon" exact component={MyPokemonList} />
           </Switch>
         </main>
-        <BottomNavBar tabs={tabs} />
+        <BottomNavBar tabs={TABS} />
       </div>
     </Store>
   );
