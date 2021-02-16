@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Store from "./stores/Store";
 
 import AppBar from "./components/AppBar";
+import About from "./components/About";
 import BottomNavBar from "./components/BottomNavBar";
 import PokemonList from "./pages/PokemonList";
 import PokemonDetail from "./pages/PokemonDetail";
@@ -38,9 +39,10 @@ audio.loop = true;
 
 function App() {
   const [stateMusic, setStateMusic] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
-  const handleInfo = () => {
-    console.log("Info");
+  const handleAbout = () => {
+    setIsAboutOpen(!isAboutOpen);
   };
   const handleMusic = () => {
     if (!stateMusic) {
@@ -58,7 +60,7 @@ function App() {
         <AppBar
           title="Parakamon"
           volumeState={stateMusic}
-          onInfoClick={handleInfo}
+          onInfoClick={handleAbout}
           onMusicClick={handleMusic}
         />
         <main
@@ -71,6 +73,7 @@ function App() {
             <Route path="/pokemon-list" exact component={PokemonList} />
             <Route path="/my-pokemon" exact component={MyPokemonList} />
           </Switch>
+          <About show={isAboutOpen} onClose={() => handleAbout()} />
         </main>
         <BottomNavBar tabs={TABS} />
       </div>

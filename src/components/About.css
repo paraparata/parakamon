@@ -1,0 +1,36 @@
+.about blockquote {
+  margin: 0;
+}
+
+.about blockquote p {
+  padding: 15px;
+  background: #f3f4f6;
+  border-radius: 5px;
+}
+
+.about blockquote p::before {
+  content: "\201C";
+}
+
+.about blockquote p::after {
+  content: "\201D";
+}
+
+.about h2 {
+  margin-bottom: 8px;
+  font-family: "Press Start 2P", cursive;
+  font-weight: bold;
+}
+.about a {
+  background-color: #fcd34d;
+}
+.about a:hover,
+.about a:focus {
+  background-color: #bfdbfe;
+}
+.about ul {
+  list-style-type: square;
+}
+.about ul li::marker {
+  color: #fcd34d;
+}

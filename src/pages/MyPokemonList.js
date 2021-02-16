@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Context, ACTIONS } from "../stores/Store";
 
 import CardThumbnail from "../components/shared/CardThumbnail";
@@ -6,6 +7,13 @@ import Button from "../components/shared/Button";
 
 function MyPokemonList() {
   const { state, dispatch } = useContext(Context);
+  const history = useHistory();
+
+  const handleOnPokemonClick = (name) => {
+    dispatch({ type: ACTIONS.ADD_TMP, payload: name });
+    dispatch({ type: ACTIONS.CHANGE_TAB, payload: 1 });
+    history.push("/");
+  };
 
   const handleOnRemove = (targetId, targetName, targetNickname) => {
     dispatch({
@@ -17,7 +25,7 @@ function MyPokemonList() {
 
   const renderData =
     state.bags.length !== 0 ? (
-      <div className="grid grid-cols-3 gap-2">
+      <div className="pt-4 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-2">
         {state.bags.map((pokemon, index) => {
           return (
             <div key={index}>
@@ -26,6 +34,7 @@ function MyPokemonList() {
                 title={pokemon.nickname}
                 subtitle={pokemon.name}
                 capitalizeTitle={false}
+                handleClick={() => handleOnPokemonClick(pokemon.name)}
               >
                 <Button
                   title="Remove"

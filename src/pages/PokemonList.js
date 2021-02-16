@@ -48,19 +48,25 @@ function PokemonList() {
   };
   const handleOnPokemonClick = (name) => {
     dispatch({ type: ACTIONS.ADD_TMP, payload: name });
+    dispatch({ type: ACTIONS.CHANGE_TAB, payload: 1 });
     history.push("/");
   };
 
   return (
     <>
-      <div className="w-full pb-4 flex justify-center space-x-6">
+      <div className="w-full pt-4 pb-4 flex justify-center space-x-6">
         <Button
           title="Prev"
+          textColor="text-gray-700"
           onClick={() => getFromLink(data.pokemons.previous)}
         />
-        <Button title="Next" onClick={() => getFromLink(data.pokemons.next)} />
+        <Button
+          title="Next"
+          textColor="text-gray-700"
+          onClick={() => getFromLink(data.pokemons.next)}
+        />
       </div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-2">
         {data.pokemons.results.map((pokemon, index) => {
           const { own } = findInOwnedList(pokemon.name, state.ownedList);
           return (

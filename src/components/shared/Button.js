@@ -3,7 +3,7 @@ import React from "react";
 function Button({
   title,
   color = "bg-yellow-300",
-  textColor = "",
+  textColor = "text-gray-700",
   optClass = "",
   onClick,
 }) {

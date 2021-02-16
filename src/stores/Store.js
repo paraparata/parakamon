@@ -1,12 +1,19 @@
 import React, { createContext, useReducer } from "react";
-import Reducer, { ACTIONS } from "./Reducer";
+import Reducer, { ACTIONS, STORAGE_KEY } from "./Reducer";
+import { getPersistState } from "../utils/persistUtil";
 
-const initialState = {
-  currentTab: 1,
-  tmpPokemon: "",
-  ownedList: [],
-  bags: [],
-};
+const initialState = (() => {
+  const savedState = getPersistState(STORAGE_KEY);
+  if (!savedState) {
+    return {
+      currentTab: 1,
+      tmpPokemon: "",
+      ownedList: [],
+      bags: [],
+    };
+  }
+  return savedState;
+})();
 const Context = createContext(initialState);
 
 function Store({ children }) {

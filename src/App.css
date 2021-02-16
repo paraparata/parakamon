@@ -1,3 +1,6 @@
 .App {
   background: linear-gradient(#fff 70%, #cef7fa, #92ceb6, #56a673);
 }
+.heading {
+  font-family: "Press Start 2P", cursive;
+}

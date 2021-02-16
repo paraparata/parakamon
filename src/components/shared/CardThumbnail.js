@@ -10,11 +10,11 @@ function CardThumbnail({
   children,
 }) {
   return (
-    <div
-      className="w-full px-2 py-2 rounded bg-white shadow focus:shadow-inner focus:ring focus:ring-blue-100"
-      onClick={handleClick}
-    >
-      <div className="px-1 py-1 flex justify-center items-center">
+    <div className="w-full px-2 py-2 rounded bg-white shadow focus:shadow-inner focus:ring focus:ring-blue-100">
+      <div
+        className="px-1 py-1 flex justify-center items-center"
+        onClick={handleClick}
+      >
         <img
           className="w-20 h-20 ss:w-12 ss:h-12 object-contain"
           src={image}

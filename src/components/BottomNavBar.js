@@ -2,8 +2,12 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context, ACTIONS } from "../stores/Store";
 
+const shadowInsetB = {
+  boxShadow: "inset 0px -0.25rem 0px 0px #00000033",
+};
+
 function BottomNavBar({ tabs }) {
-  const { dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const history = useHistory();
 
   const handleActive = (route, index) => {
@@ -12,13 +16,18 @@ function BottomNavBar({ tabs }) {
   };
 
   return (
-    <nav className="fixed bottom-0 w-full pb-4 flex bg-gradient-to-b from-transparent via-yellow-300 to-yellow-400">
+    <nav
+      className="fixed bottom-0 w-full pt-3 pb-5 flex bg-yellow-300"
+      style={shadowInsetB}
+    >
       {tabs.map((tab, index) => {
         return (
           <div key={index} className="flex-1 flex justify-center">
             <button
               type="button"
-              className="px-2 py-2 rounded-full border bg-white shadow-xl focus:ring focus:ring-blue-400 focus:shadow-inner"
+              className={`px-2 py-2 rounded-full border bg-white shadow-xl ${
+                state.currentTab === index && "ring ring-blue-400 shadow-inner"
+              }`}
               onClick={() => handleActive(tab.route, index)}
             >
               <img
