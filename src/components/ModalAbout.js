@@ -14,7 +14,7 @@ function About({ show, onClose }) {
           <div className="w-full mx-auto my-4">
             <div className="about w-full h-72 ss:h-48 px-4 py-2 flex flex-col rounded border-2 border-yellow-300 text-gray-700 overflow-y-scroll">
               <figure className="mb-4">
-                <blockquote cite="https://github.com/paraparata/parakamon">
+                <blockquote cite="https://github.com/paraparata/parakemon">
                   <p>Parakemon is para pokemon yang ditangkep.</p>
                 </blockquote>
                 <figcaption>
@@ -90,12 +90,12 @@ function About({ show, onClose }) {
                   <br />
                   in{" "}
                   <a
-                    href="https://github.com/paraparata/parakamon"
+                    href="https://github.com/paraparata/parakemon"
                     title="parakemon repository"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    parakamon repo
+                    parakemon repo
                   </a>
                 </p>
               </div>
