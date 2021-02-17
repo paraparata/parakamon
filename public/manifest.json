@@ -33,7 +33,7 @@
       "url": "/?source=pwa",
       "icons": [
         {
-          "src": "/static/media/camera.c3ec4bc1.svg",
+          "src": "camera-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -45,7 +45,7 @@
       "url": "/my-pokemon?source=pwa",
       "icons": [
         {
-          "src": "/static/media/backpack.7931fe81.svg",
+          "src": "bags-192x192.png",
           "sizes": "192x192"
         }
       ]

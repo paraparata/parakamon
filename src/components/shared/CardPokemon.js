@@ -21,7 +21,7 @@ function CardPokemon({ name, types, img, imgWidth, imgHeight, pokemonAnim }) {
         </div>
       </div>
       <img
-        className={`${pokemonAnim} ${imgWidth} ${imgHeight} border-b border-gray-500`}
+        className={`${pokemonAnim} ${imgWidth} ${imgHeight}`}
         src={img}
         alt={name}
       ></img>
