@@ -1,6 +1,6 @@
 {
   "short_name": "Parakemon",
-  "name": "Parakemon",
+  "name": "Parakemon: Pokemon Catcher",
   "description": "Mobile first pokemon catcher baked with React, Graphql, and Apollo.",
   "icons": [
     {
@@ -19,10 +19,36 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://paraparata.github.io/parakemon/",
   "display": "standalone",
   "theme_color": "#fcd34d",
-  "background_color": "#ffffff",
+  "background_color": "#fcd34d",
   "orientation": "portrait",
-  "lang": "en"
+  "lang": "en",
+  "shortcuts": [
+    {
+      "name": "Let's catch a pokemon Sir!",
+      "short_name": "Pokemon Detail",
+      "description": "View pokemon infromation and catch them.",
+      "url": "/?source=pwa",
+      "icons": [
+        {
+          "src": "/static/media/camera.c3ec4bc1.svg",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Don't you miss your pokemons Sir?",
+      "short_name": "My Pokemon List",
+      "description": "View catched pokemons and manage them.",
+      "url": "/my-pokemon?source=pwa",
+      "icons": [
+        {
+          "src": "/static/media/backpack.7931fe81.svg",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }
