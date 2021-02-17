@@ -45,7 +45,12 @@ function PokemonDetailComp({ randomPokemon, onRefetch }) {
     name: paramsPokemon,
   });
 
-  if (loading) return <LoadSpinner />;
+  if (loading)
+    return (
+      <div className="h-full flex-grow flex justify-center items-center">
+        <LoadSpinner />{" "}
+      </div>
+    );
   if (error) return `Error! ${error.message}`;
 
   const handleSavePokemon = () => {

@@ -13,7 +13,7 @@ import svgCamera from "./assets/camera.svg";
 import svgPikachu from "./assets/pikachu.svg";
 import audioBacksound from "./assets/parakamon-music.mp3";
 
-import PokemonDetail from "./pages/PokemonDetail";
+const PokemonDetail = lazy(() => import("./pages/PokemonDetail"));
 const PokemonList = lazy(() => import("./pages/PokemonList"));
 const MyPokemonList = lazy(() => import("./pages/MyPokemonList"));
 
@@ -40,6 +40,14 @@ audio.src = audioBacksound;
 audio.volume = 0.4;
 audio.loop = true;
 
+function FullSpinner() {
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <LoadSpinner />
+    </div>
+  );
+}
+
 function App() {
   const [stateMusic, setStateMusic] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -60,7 +68,7 @@ function App() {
 
   return (
     <Store>
-      <Suspense fallback={<LoadSpinner />}>
+      <Suspense fallback={<FullSpinner />}>
         <div className="w-screen min-h-screen flex flex-col">
           <AppBar
             title="Parakemon"
