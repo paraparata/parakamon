@@ -1,6 +1,35 @@
-.App {
-  background: linear-gradient(#fff 70%, #cef7fa, #92ceb6, #56a673);
-}
 .heading {
   font-family: "Press Start 2P", cursive;
+}
+.shadow-inset-b {
+  box-shadow: inset 0px -0.25rem 0px 0px #00000033;
+}
+
+.wiggle {
+  animation: Wiggle 1s ease-in-out infinite;
+}
+.blitz {
+  animation: Blitz 1s ease-out;
+}
+
+@keyframes Wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes Blitz {
+  0%,
+  50% {
+    transform: translateX(-10px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

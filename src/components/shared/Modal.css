@@ -23,7 +23,6 @@
 }
 
 .display-none {
-  animation: FadeOut ease-in-out 200ms;
   display: none;
 }
 
@@ -33,14 +32,5 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes FadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
   }
 }

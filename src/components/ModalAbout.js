@@ -1,24 +1,24 @@
 import Button from "./shared/Button";
 import Modal from "./shared/Modal";
-import "./About.css";
+import "./ModalAbout.css";
 
 function About({ show, onClose }) {
   return (
     <Modal show={show}>
       <div className="mx-auto flex justify-center">
         <div className="w-10/12 px-4 py-4 flex flex-col justify-center rounded-lg bg-white border-2 border-yellow-500">
-          <span className="heading mb-2 text-xs text-center text-yellow-500">
+          <span className="heading mb-2 text-xs text-center text-blue-500">
             About
           </span>
           <hr className="mb-2 " />
           <div className="w-full mx-auto my-4">
-            <div className="about w-full h-72 ss:h-36 px-4 py-2 flex flex-col rounded border-2 border-yellow-300 text-gray-700 overflow-y-scroll">
+            <div className="about w-full h-72 ss:h-48 px-4 py-2 flex flex-col rounded border-2 border-yellow-300 text-gray-700 overflow-y-scroll">
               <figure className="mb-4">
                 <blockquote cite="https://github.com/paraparata/parakamon">
-                  <p>Parakamon is para pokemon!</p>
+                  <p>Parakemon is para pokemon yang ditangkep.</p>
                 </blockquote>
                 <figcaption>
-                  —paraparata, <cite>Parakamon</cite>
+                  —paraparata, <cite>Parakemon</cite>
                 </figcaption>
               </figure>
               <h2>Resources</h2>
@@ -91,7 +91,7 @@ function About({ show, onClose }) {
                   in{" "}
                   <a
                     href="https://github.com/paraparata/parakamon"
-                    title="parakamon repository"
+                    title="parakemon repository"
                     target="_blank"
                     rel="noreferrer"
                   >

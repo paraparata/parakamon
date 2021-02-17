@@ -1,6 +1,6 @@
 import React from "react";
 
-function CardPokemon({ name, types, img, imgWidth, imgHeight }) {
+function CardPokemon({ name, types, img, imgWidth, imgHeight, pokemonAnim }) {
   return (
     <div className="px-2 py-2 flex flex-col items-center capitalize">
       <div className="mb-2">
@@ -20,7 +20,11 @@ function CardPokemon({ name, types, img, imgWidth, imgHeight }) {
           })}
         </div>
       </div>
-      <img className={`${imgWidth} ${imgHeight}`} src={img} alt={name}></img>
+      <img
+        className={`${pokemonAnim} ${imgWidth} ${imgHeight} border-b border-gray-500`}
+        src={img}
+        alt={name}
+      ></img>
     </div>
   );
 }

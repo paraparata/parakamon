@@ -2,10 +2,6 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context, ACTIONS } from "../stores/Store";
 
-const shadowInsetB = {
-  boxShadow: "inset 0px -0.25rem 0px 0px #00000033",
-};
-
 function BottomNavBar({ tabs }) {
   const { state, dispatch } = useContext(Context);
   const history = useHistory();
@@ -16,10 +12,7 @@ function BottomNavBar({ tabs }) {
   };
 
   return (
-    <nav
-      className="fixed bottom-0 w-full pt-3 pb-5 flex bg-yellow-300"
-      style={shadowInsetB}
-    >
+    <nav className="shadow-inset-b fixed bottom-0 w-full pt-3 pb-5 flex bg-yellow-300">
       {tabs.map((tab, index) => {
         return (
           <div key={index} className="flex-1 flex justify-center">

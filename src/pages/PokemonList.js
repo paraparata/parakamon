@@ -54,7 +54,7 @@ function PokemonList() {
 
   return (
     <>
-      <div className="w-full pt-4 pb-4 flex justify-center space-x-6">
+      <div className="w-full py-4 flex justify-center space-x-6">
         <Button
           title="Prev"
           textColor="text-gray-700"

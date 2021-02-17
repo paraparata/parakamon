@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Store from "./stores/Store";
 
 import AppBar from "./components/AppBar";
-import About from "./components/About";
 import BottomNavBar from "./components/BottomNavBar";
-import PokemonList from "./pages/PokemonList";
-import PokemonDetail from "./pages/PokemonDetail";
-import MyPokemonList from "./pages/MyPokemonList";
+import LoadSpinner from "./components/LoadSpinner";
+import ModalAbout from "./components/ModalAbout";
 import "./App.css";
 
 import svgBackpack from "./assets/backpack.svg";
 import svgCamera from "./assets/camera.svg";
 import svgPikachu from "./assets/pikachu.svg";
 import audioBacksound from "./assets/parakamon-music.mp3";
+
+const PokemonDetail = lazy(() => import("./pages/PokemonDetail"));
+const PokemonList = lazy(() => import("./pages/PokemonList"));
+const MyPokemonList = lazy(() => import("./pages/MyPokemonList"));
 
 const TABS = [
   {
@@ -35,6 +37,7 @@ const TABS = [
 
 const audio = new Audio();
 audio.src = audioBacksound;
+audio.volume = 0.4;
 audio.loop = true;
 
 function App() {
@@ -50,33 +53,36 @@ function App() {
       setStateMusic(true);
     } else {
       audio.pause();
+      audio.currentTime = 0;
       setStateMusic(false);
     }
   };
 
   return (
     <Store>
-      <div className="w-screen min-h-screen flex flex-col">
-        <AppBar
-          title="Parakamon"
-          volumeState={stateMusic}
-          onInfoClick={handleAbout}
-          onMusicClick={handleMusic}
-        />
-        <main
-          className="mb-24 ss:mb-20 w-full px-2 py-2 flex-grow flex flex-col"
-          role="main"
-          style={{ marginTop: "48px" }}
-        >
-          <Switch>
-            <Route path="/" exact component={PokemonDetail} />
-            <Route path="/pokemon-list" exact component={PokemonList} />
-            <Route path="/my-pokemon" exact component={MyPokemonList} />
-          </Switch>
-          <About show={isAboutOpen} onClose={() => handleAbout()} />
-        </main>
-        <BottomNavBar tabs={TABS} />
-      </div>
+      <Suspense fallback={<LoadSpinner />}>
+        <div className="w-screen min-h-screen flex flex-col">
+          <AppBar
+            title="Parakemon"
+            volumeState={stateMusic}
+            onInfoClick={handleAbout}
+            onMusicClick={handleMusic}
+          />
+          <main
+            className="mb-24 ss:mb-20 w-full px-2 py-2 flex-grow flex flex-col"
+            role="main"
+            style={{ marginTop: "48px" }}
+          >
+            <Switch>
+              <Route path="/" exact component={PokemonDetail} />
+              <Route path="/pokemon-list" exact component={PokemonList} />
+              <Route path="/my-pokemon" exact component={MyPokemonList} />
+            </Switch>
+            <ModalAbout show={isAboutOpen} onClose={() => handleAbout()} />
+          </main>
+          <BottomNavBar tabs={TABS} />
+        </div>
+      </Suspense>
     </Store>
   );
 }

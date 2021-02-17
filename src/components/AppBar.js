@@ -4,16 +4,9 @@ import svgVolumeMute from "../assets/volume-mute.svg";
 import svgVolumeUp from "../assets/volume-up.svg";
 import svgInfoCircle from "../assets/info-circle.svg";
 
-const shadowInsetB = {
-  boxShadow: "inset 0px -0.25rem 0px 0px #00000033",
-};
-
 function AppBar({ title, volumeState, onInfoClick, onMusicClick }) {
   return (
-    <header
-      className="fixed w-full px-6 py-4 flex justify-between items-center bg-yellow-300 shadow-md"
-      style={shadowInsetB}
-    >
+    <header className="shadow-inset-b fixed w-full px-6 py-4 flex justify-between items-center bg-yellow-300 shadow-md">
       <button type="button" onClick={onInfoClick}>
         <img
           className="w-6 h-6 ss:w-5 ss:h-5 object-contain"
