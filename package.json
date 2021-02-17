@@ -1,5 +1,4 @@
 {
-  "homepage": "https://paraparata.github.io/parakemon",
   "name": "parakemon",
   "version": "0.1.0",
   "private": true,
@@ -33,8 +32,6 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
@@ -57,8 +54,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^3.1.0"
   }
 }

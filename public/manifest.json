@@ -19,7 +19,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "https://paraparata.github.io/parakemon/",
+  "start_url": "/?source=pwa",
   "display": "standalone",
   "theme_color": "#fcd34d",
   "background_color": "#fcd34d",
