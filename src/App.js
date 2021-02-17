@@ -13,7 +13,7 @@ import svgCamera from "./assets/camera.svg";
 import svgPikachu from "./assets/pikachu.svg";
 import audioBacksound from "./assets/parakamon-music.mp3";
 
-const PokemonDetail = lazy(() => import("./pages/PokemonDetail"));
+import PokemonDetail from "./pages/PokemonDetail";
 const PokemonList = lazy(() => import("./pages/PokemonList"));
 const MyPokemonList = lazy(() => import("./pages/MyPokemonList"));
 
